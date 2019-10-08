@@ -10,16 +10,16 @@ tNo* criaNo(int ch){
     novo->prox=NULL;
     return novo;
 }
-tNo* insereInicio(tNo *L,tNo *novo){
-    novo->prox = L;
-    return novo;
-}
 void imprimeLista(tNo *L){
     tNo *aux = L;
     while(aux!=NULL){
         printf("%d\t",aux->ch);
         aux = aux->prox;
     }
+}
+tNo* insereInicio(tNo *L,tNo *novo){
+    novo->prox = L;
+    return novo;
 }
 tNo* insereFinal(tNo *L,tNo *novo){
     tNo *aux = L;
@@ -33,6 +33,84 @@ tNo* insereFinal(tNo *L,tNo *novo){
         return novo;
     }
     aux->prox = novo;
+    return L;
+}
+tNo* InsereOrdenado(tNo *L,tNo *novo){
+    tNo *aux = L,*ant = NULL;
+    if (L == NULL){
+        return novo;
+    }
+    while(aux!=NULL && aux->ch<novo->ch){
+        ant = aux;
+        aux = aux->prox;
+    }
+    novo->prox = aux;
+    if (ant!=NULL){
+        ant->prox = novo;
+    }
+    else {
+        L = novo;
+    }
+    return L;
+}
+tNo* RemoveUltimo(tNo *L){
+    tNo *aux = L,*ant = NULL;
+    if (L == NULL){
+        return L;
+    }
+    while(aux->prox!=NULL){
+        ant = aux;
+        aux = aux->prox;
+    }
+    if (ant == NULL){
+        L = NULL;
+    }
+    else {
+        ant->prox = NULL;
+    }
+    free(aux);
+    return L;
+}
+tNo* RemoveDesor(tNo *L,int ch){
+    tNo *aux = L,*ant = NULL;
+    if (L == NULL) {
+        return L;
+    }
+    while (aux!=NULL && aux->ch!=ch){
+        ant = aux;
+        aux = aux->prox;
+    }
+    if (aux == NULL) {
+        return L;
+    }
+    if (ant!=NULL) {
+        ant->prox = aux->prox;
+    }
+    else {
+        L = aux->prox;
+    }
+    free(aux);
+    return L;
+}
+tNo* RemoveOrde(tNo *L,int ch){
+    tNo *aux = L,*ant = NULL;
+    if (L == NULL) {
+        return L;
+    }
+    while (aux!=NULL && aux->ch>ch){
+        ant = aux;
+        aux = aux->prox;
+    }
+    if (aux = NULL){
+        return L;
+    }
+    if (ant!=NULL){
+        ant->prox = aux->prox;
+    }
+    else {
+        L = aux->prox;
+    }
+    free(aux);
     return L;
 }
 void ocorrencia(tNo *L,int ch){
