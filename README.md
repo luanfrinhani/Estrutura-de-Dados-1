@@ -1,2 +1,2 @@
-# Estrutura-de-Dados-1
-Algoritmos desenvolvidos durante a diciplina de ED1
+# Estrutura-de-Dados
+Algoritmos desenvolvidos durante a diciplina de ED
